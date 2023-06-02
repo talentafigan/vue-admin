@@ -5,7 +5,7 @@
         <v-list-item-content>
           <div class="d-flex align-center justify-space-evenly pb-1">
             <v-img src="@/assets/brand.png" max-width="50px" />
-            <div class="font-weight-bold text-style ml-2">Company Name</div>
+            <div class="font-weight-bold text-style ml-2">FVR</div>
           </div>
         </v-list-item-content>
       </v-list-item>

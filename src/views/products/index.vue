@@ -47,23 +47,24 @@
     <v-data-table
       :headers="tableHeader"
       :items="products"
-      :items-per-page="5"
+      hide-default-footer
+      :items-per-page="pageable.perPage"
       class="elevation-1 w-full"
     >
       <template #[`item.info`]="row">
-        <div class="d-flex justify-center align-start flex-column pa-2">
-          <v-img :src="row.item.image" class="ml-3" width="40" />
-          <span class="mt-2 text-caption">{{ row.item.name }}</span>
+        <div class="d-flex justify-center align-start flex-row pa-2">
+          <v-img :src="row.item.image" width="40" />
+          <span class="ml-3 text-caption">{{ row.item.name }}</span>
         </div>
       </template>
       <template #[`item.action`]>
-        <v-menu bottom offset-y>
+        <v-menu bottom left offset-y>
           <template #activator="{ on, attrs }">
             <v-btn v-on="on" v-bind="attrs" icon>
               <v-icon> mdi-chevron-down </v-icon>
             </v-btn>
           </template>
-          <v-list dense>
+          <v-list width="100" dense>
             <v-list-item>
               <v-list-item-title>Detail</v-list-item-title>
             </v-list-item>
@@ -74,6 +75,9 @@
         </v-menu>
       </template>
     </v-data-table>
+    <div class="w-full d-flex justify-end alogn-center px-2 flex-row mt-6">
+      <common-pagination v-model="pageable" />
+    </div>
   </layout-container>
 </template>
 
@@ -81,14 +85,21 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import ProductsData from "@/utils/data/products.json";
+import { interfacePagination, interfaceProduct } from "@/types/interface";
 
 @Component
 export default class Product extends Vue {
+  pageable: interfacePagination = {
+    page: 1,
+    perPage: 5,
+    size: 0,
+  };
   tableHeader = [
     {
       text: "Product info",
       value: "info",
       sortable: false,
+      width: 250,
     },
     {
       text: "Category",
@@ -126,7 +137,24 @@ export default class Product extends Vue {
       sortable: false,
     },
   ];
-  products = ProductsData;
+  products = [] as interfaceProduct[];
+
+  fetchProduct() {
+    try {
+      this.products = ProductsData;
+      this.pageable = {
+        page: 1,
+        size: 10,
+        perPage: 5,
+      };
+    } catch (error) {
+    } finally {
+    }
+  }
+
+  mounted() {
+    this.fetchProduct();
+  }
   listCategory = ["Otomotif", "Electronic", "Wedding"];
 }
 </script>
