@@ -1,7 +1,5 @@
 <template>
-  <layout-container>
-    <span class="font-we">Dashboard</span>
-  </layout-container>
+  <layout-container back brand-title="Create product"></layout-container>
 </template>
 
 <script lang="ts">
@@ -9,5 +7,5 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class Index extends Vue {}
+export default class CreateProduct extends Vue {}
 </script>

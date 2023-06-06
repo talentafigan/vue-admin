@@ -2,11 +2,11 @@
   <v-row>
     <v-col cols="6">
       <div class="d-flex justify-start flex-row align-center">
-        <span style="font-size: 14px; color: #626262" class="font-weight-medium"
-          >Show rows per page
+        <span style="font-size: 14px" class="font-weight-normal"
+          >Rows per page:
         </span>
         <v-select
-          style="max-width: 70px"
+          style="max-width: 60px"
           dense
           class="ml-3"
           v-model="pageable.perPage"
@@ -37,27 +37,19 @@
     <v-col cols="6">
       <div class="w-full d-flex justify-end align-center flex-row">
         <div class="d-flex justify-center align-center flex-row">
-          <span
-            style="font-size: 14px; color: #626262"
-            class="font-weight-medium"
-            >1</span
-          >
-          <span
-            style="font-size: 14px; color: #a3a5a9"
-            class="font-weight-medium ml-2"
+          <span style="font-size: 14px" class="font-weight-normal">5-10</span>
+          <span style="font-size: 14px" class="font-weight-medium ml-2"
             >of</span
           >
-          <span
-            style="font-size: 14px; color: #626262"
-            class="font-weight-medium ml-2"
-            >10</span
+          <span style="font-size: 14px" class="font-weight-normal ml-2"
+            >20</span
           >
         </div>
-        <div class="d-flex justify-center align-center flex-row ml-4">
-          <v-btn small icon>
+        <div class="d-flex justify-center align-center flex-row ml-3">
+          <v-btn icon small>
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
-          <v-btn class="ml-4" small icon>
+          <v-btn icon class="ml-3" small>
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
         </div>

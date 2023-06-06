@@ -14,6 +14,11 @@ const routes: Array<RouteConfig> = [
     path: "/products",
     component: Module.productList,
   },
+  {
+    name: "productCreate",
+    path: "/products/create",
+    component: Module.productCreate,
+  },
 ];
 
 const router = new VueRouter({

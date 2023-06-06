@@ -14,7 +14,7 @@ export interface interfaceProduct {
   salePrice: number;
   sales: number;
   stock: number;
-  status: number;
+  status: string;
 }
 
 export interface interfacePagination {

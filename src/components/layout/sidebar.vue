@@ -5,8 +5,11 @@
         <v-subheader v-if="group.title">{{ group.title }}</v-subheader>
         <template v-for="(menu, j) in group.child">
           <template v-if="menu.child">
-            <v-list-group :key="j" :prepend-icon="menu.icon" no-action>
+            <v-list-group :key="j" no-action>
               <template #activator>
+                <v-list-item-icon>
+                  <v-icon color="" size="20">{{ menu.icon }}</v-icon>
+                </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>{{ menu.title }}</v-list-item-title>
                 </v-list-item-content>
@@ -23,7 +26,7 @@
           <template v-if="menu.to && !menu.child">
             <v-list-item :key="j" :to="menu.to">
               <v-list-item-icon>
-                <v-icon>{{ menu.icon }}</v-icon>
+                <v-icon size="20">{{ menu.icon }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>
@@ -45,6 +48,10 @@ import { interfaceSidebar } from "@/types/interface";
 
 @Component
 export default class LayoutSidebar extends Vue {
+  get currentRouter() {
+    return this.$route.path;
+  }
+
   selected = null;
   items: interfaceSidebar[] = [
     {
@@ -61,25 +68,16 @@ export default class LayoutSidebar extends Vue {
       child: [
         {
           title: "Product",
-          icon: "mdi-archive",
-          child: [
-            {
-              title: "Product List",
-              to: "/products",
-            },
-            {
-              title: "Procurement",
-              to: "/product-setting",
-            },
-          ],
+          icon: "mdi-package-variant-closed",
+          to: "/products",
         },
         {
-          icon: "mdi-cash-register",
+          icon: "mdi-list-box-outline",
           title: "Transaction",
           to: "/transaction",
         },
         {
-          icon: "mdi-truck-outline",
+          icon: "mdi-truck-fast-outline",
           title: "Shipment",
           child: [
             {
@@ -93,7 +91,7 @@ export default class LayoutSidebar extends Vue {
           ],
         },
         {
-          icon: "mdi-bullhorn",
+          icon: "mdi-bullhorn-outline",
           title: "Champaign",
           child: [
             {
@@ -113,7 +111,7 @@ export default class LayoutSidebar extends Vue {
       child: [
         {
           title: "User Management",
-          icon: "mdi-account-group",
+          icon: "mdi-account-group-outline",
           child: [
             {
               title: "User List",

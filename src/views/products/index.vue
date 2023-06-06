@@ -1,80 +1,85 @@
 <template>
-  <layout-container brand-title="Products">
+  <layout-container brand-title="Product">
     <template #tools-navigation>
-      <v-btn outlined small depressed color="primary">
-        <v-icon small> mdi-file-download-outline </v-icon>
-        Export Report
-      </v-btn>
-      <v-btn class="ml-2" small depressed color="primary">
-        <v-icon small> mdi-plus </v-icon>
-        Add Product
+      <v-btn
+        @click="$router.push('/products/create')"
+        depressed
+        small
+        color="info"
+      >
+        <v-icon small class="mr-1"> mdi-plus </v-icon>
+        <span class="font-weight-semibold">CREATE PRODUCT</span>
       </v-btn>
     </template>
-    <v-row class="w-full">
+    <v-row dense class="w-full">
       <v-col cols="6">
         <v-text-field
+          dense
+          solo
+          hide-details="auto"
           append-icon="mdi-magnify"
           label="Search product"
-          single-line
-          dense
-          solo
-        ></v-text-field>
-      </v-col>
-      <v-col cols="3">
-        <v-select
-          single-line
-          solo
-          dense
-          :items="listCategory"
-          label="Category"
-        ></v-select>
-      </v-col>
-      <v-col cols="3">
-        <v-select
-          single-line
-          solo
-          dense
-          :items="[
-            'Sales: Best',
-            'Sales: Lowest',
-            'Stock: Most',
-            'Stock: Lowest',
-          ]"
-          label="Sort By"
-        ></v-select>
+        >
+          <template v-slot:append-outer>
+            <div class="d-flex justify-center items-center flex-col h-full">
+              <button class="btn-filter px-4" @click="dialogFilter = true">
+                <v-icon size="20">mdi-filter-plus-outline</v-icon>
+              </button>
+            </div>
+          </template>
+        </v-text-field>
       </v-col>
     </v-row>
-    <v-data-table
-      :headers="tableHeader"
-      :items="products"
-      hide-default-footer
-      :items-per-page="pageable.perPage"
-      class="elevation-1 w-full"
-    >
-      <template #[`item.info`]="row">
-        <div class="d-flex justify-center align-start flex-row pa-2">
-          <v-img :src="row.item.image" width="40" />
-          <span class="ml-3 text-caption">{{ row.item.name }}</span>
+    <v-dialog v-model="dialogFilter" width="480">
+      <v-card>
+        <v-card-title>
+          <span class="text-h6 font-weight-semibold">Filter</span>
+        </v-card-title>
+        <v-divider class="mx-2"></v-divider>
+        <div class="px-5 mt-4">
+          <page-products-form-dialog-filter />
         </div>
-      </template>
-      <template #[`item.action`]>
-        <v-menu bottom left offset-y>
-          <template #activator="{ on, attrs }">
-            <v-btn v-on="on" v-bind="attrs" icon>
-              <v-icon> mdi-chevron-down </v-icon>
-            </v-btn>
-          </template>
-          <v-list width="100" dense>
-            <v-list-item>
-              <v-list-item-title>Detail</v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>Delete</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </template>
-    </v-data-table>
+        <v-divider class="mx-2 mt-5"></v-divider>
+        <v-card-actions>
+          <v-spacer> </v-spacer>
+          <v-btn color="accent" text> RESET </v-btn>
+          <v-btn depressed color="accent"> SAVE FILTER </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-card class="w-full mt-3" outlined>
+      <v-data-table
+        :headers="tableHeader"
+        :items="products"
+        hide-default-footer
+        :items-per-page="pageable.perPage"
+        class="elevation-0 w-full"
+      >
+        <template #[`item.info`]="row">
+          <div class="d-flex justify-center align-start flex-row pa-2">
+            <v-img :src="row.item.image" width="40" />
+            <span class="ml-3 text-caption">{{ row.item.name }}</span>
+          </div>
+        </template>
+        <template #[`item.action`]>
+          <v-menu bottom left offset-y>
+            <template #activator="{ on, attrs }">
+              <v-btn v-on="on" v-bind="attrs" icon>
+                <v-icon> mdi-chevron-down </v-icon>
+              </v-btn>
+            </template>
+            <v-list width="100" dense>
+              <v-list-item>
+                <v-list-item-title>Detail</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Delete</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </template>
+      </v-data-table>
+    </v-card>
     <div class="w-full d-flex justify-end alogn-center px-2 flex-row mt-6">
       <common-pagination v-model="pageable" />
     </div>
@@ -89,6 +94,7 @@ import { interfacePagination, interfaceProduct } from "@/types/interface";
 
 @Component
 export default class Product extends Vue {
+  dialogFilter = false;
   pageable: interfacePagination = {
     page: 1,
     perPage: 5,
