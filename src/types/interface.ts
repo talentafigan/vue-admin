@@ -26,3 +26,10 @@ export interface interfacePagination {
 export interface interfaceTransaction {
   date: string;
 }
+
+export interface UserDto {
+  name: string;
+  username: string;
+  password: string;
+  role: string;
+}

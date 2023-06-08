@@ -37,7 +37,7 @@
               <v-list-item-icon>
                 <v-icon size="20">mdi-logout-variant</v-icon>
               </v-list-item-icon>
-              <v-list-item-content>
+              <v-list-item-content @click="onClickLogout">
                 <v-list-item-title>Logout</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
@@ -89,5 +89,12 @@ export default class Container extends Vue {
   drawer = true;
   fixed = false;
   miniVariant = false;
+
+  onClickLogout() {
+    this.$store.commit("auth/resetAuth");
+    this.$nextTick(() => {
+      window.location.reload();
+    });
+  }
 }
 </script>
