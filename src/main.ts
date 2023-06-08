@@ -5,6 +5,7 @@ import vuetify from "./plugins/vuetify";
 import VueJSToggleButton from "./plugins/vue-js-pluggin-button";
 import store from "./store";
 import ComponentModule from "@/components/module";
+import ApexCharts from "vue-apexcharts";
 
 Vue.config.productionTip = false;
 
@@ -13,6 +14,8 @@ VueJSToggleButton();
 
 import "@/assets/styles/scss/index.scss";
 import "@/assets/styles/css/index.css";
+
+Vue.component("apex-chart", ApexCharts);
 
 new Vue({
   vuetify,

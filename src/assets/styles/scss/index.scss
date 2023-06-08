@@ -1,7 +1,11 @@
-@import url("https://fonts.cdnfonts.com/css/outfit");
+@import url('https://fonts.cdnfonts.com/css/product-sans');
 
 .w-full {
   width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .v-input--selection-controls {
@@ -19,22 +23,24 @@
 
 .v-application {
   [class*="text-"] {
-    font-family: "Outfit", sans-serif !important;
+    font-family: "Product Sans", sans-serif !important;
     letter-spacing: normal !important;
+    line-height: normal !important;
   }
   [class*="v-btn"] {
-    // font-family: "Outfit", sans-serif !important;
+    font-family: "Product Sans", sans-serif !important;
     letter-spacing: normal !important;
   }
-  font-family: "Outfit", sans-serif !important;
+  font-family: "Product Sans", sans-serif !important;
   letter-spacing: normal !important;
+  line-height: normal !important;
 }
 
 .font-weight-semibold {
   font-weight: 600 !important;
 }
 
-.v-list-item__title  {
+.v-list-item__title {
   font-size: 14px !important;
   font-weight: 400 !important;
 }

@@ -8,13 +8,13 @@ export interface interfaceSidebar {
 
 export interface interfaceProduct {
   name: string;
-  image: string;
+  images: string[];
   category: string;
   cogs: number;
   salePrice: number;
-  sales: number;
+  sales?: number;
   stock: number;
-  status: string;
+  status?: string;
 }
 
 export interface interfacePagination {
@@ -24,5 +24,5 @@ export interface interfacePagination {
 }
 
 export interface interfaceTransaction {
-  date : string
+  date: string;
 }

@@ -4,11 +4,11 @@
       <v-btn
         @click="$router.push('/products/create')"
         depressed
-        small
+        
         color="info"
       >
         <v-icon small class="mr-1"> mdi-plus </v-icon>
-        <span class="font-weight-semibold">CREATE PRODUCT</span>
+        <span class="font-weight-semibold">Create Product</span>
       </v-btn>
     </template>
     <v-row dense class="w-full">
@@ -57,11 +57,11 @@
       >
         <template #[`item.info`]="row">
           <div class="d-flex justify-center align-start flex-row pa-2">
-            <v-img :src="row.item.image" width="40" />
+            <v-img :src="row.item.images[0]" width="40" />
             <span class="ml-3 text-caption">{{ row.item.name }}</span>
           </div>
         </template>
-        <template #[`item.action`]>
+        <template #[`item.action`]="row">
           <v-menu bottom left offset-y>
             <template #activator="{ on, attrs }">
               <v-btn v-on="on" v-bind="attrs" icon>
@@ -69,7 +69,7 @@
               </v-btn>
             </template>
             <v-list width="100" dense>
-              <v-list-item>
+              <v-list-item @click="$router.push('/products/' + row.item.id)">
                 <v-list-item-title>Detail</v-list-item-title>
               </v-list-item>
               <v-list-item>

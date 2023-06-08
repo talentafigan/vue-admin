@@ -49,13 +49,13 @@
     </v-navigation-drawer>
     <layout-appbar @on-click-drawer="() => (drawer = !drawer)" />
     <v-main>
-      <div class="d-flex white align-center w-full flex-row py-2 px-7">
+      <div class="d-flex white align-center w-full flex-row py-3 px-7">
         <v-btn v-if="back" class="mr-2" icon>
-          <v-icon size="22" color="black" @click="$router.back()">mdi-arrow-left</v-icon>
+          <v-icon size="22" color="black" @click="$router.back()"
+            >mdi-arrow-left</v-icon
+          >
         </v-btn>
-        <span style="color: #142a3f" class="text-h6 font-weight-semibold"
-          >{{ brandTitle }}
-        </span>
+        <span class="text-h6">{{ brandTitle }} </span>
         <v-spacer></v-spacer>
         <slot name="tools-navigation" />
       </div>
